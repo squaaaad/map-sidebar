@@ -1,2 +1,2 @@
-# FEC-WeGot-Paolo
+# map-side-bar
 Map Side Bar
