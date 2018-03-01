@@ -9,7 +9,7 @@ var App = (props) => { //props: restaurant object
       <InfoList restaurant={props.restaurant} />
       <Map geometry={props.restaurant.geometry} />
     </div>
-  )
-}
+  );
+};
 
 export default App;
