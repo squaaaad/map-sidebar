@@ -1,10 +1,12 @@
 var express = require('express');
 var app = express();
 
+var cors = require('cors');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var restaurantsRouter = require('./routers/restaurants.js');
 
+app.use(cors());
 app.use(bodyParser.json());
 app.use(morgan('tiny'));
 
