@@ -2,7 +2,6 @@ import restaurant from '../../../restaurants_data_small.js';
 import { InfoList, InfoListElement } from '../../../client/src/infoList.jsx';
 import enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import {} from './enzyme_jsdom_setup.js';
 import React from 'react';
 
 enzyme.configure({ adapter: new Adapter() });
