@@ -1,10 +1,11 @@
 import restaurant from '../../../restaurants_data_small.js';
 import App from '../../../client/src/app.jsx';
-import InfoList from '../../../client/src/infoList.jsx';
-import Map from '../../../client/src/map.jsx';
-import React from 'react';
+import { InfoList } from '../../../client/src/infoList.jsx';
+import { Map } from '../../../client/src/map.jsx';
 import enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+import {} from './enzyme_jsdom_setup.js';
+import React from 'react';
 
 enzyme.configure({ adapter: new Adapter() });
 
