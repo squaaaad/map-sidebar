@@ -1,2 +1,32 @@
 # map-side-bar
-Map Side Bar
+## Purpose
+This service forms a part of the WeGot food review website. It renders basic information about a restaurant, including the opening hours, address, phone number, and links to website and to google maps for directions. In addition, the service renders a map centered on the location of the restaurant, with a labeled marker.
+
+## Description
+The service is composed of a server, a  client, and a database.
+### Server API
+Serves static client files in response to a GET request to the root endpoint.
+It also serves json formatted restaurant data in response to a GET request to the /restaurants endpoint.
+### Database
+A MongoDB database that holds restaurant information.
+### Client
+Takes in a restaurant ID and requests restaurant information from the server. Renders the information.
+
+## Getting Started
+### Prerequisites
+-npm
+-node
+-jest
+-webpack
+-MongoDB
+
+### Installation
+1. Install dependencies: `npm install`
+2. Start database server: `npm run database`
+3. Seed database: `npm run seed-database`
+4. Start server: `npm start`
+
+To start, in your browser navigate to: [http://localhost:3000](http://localhost:3000)
+
+## Tests
+Run: `npm test`

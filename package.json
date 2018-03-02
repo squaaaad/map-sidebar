@@ -4,6 +4,8 @@
   "description": "info sidebar with a map for WeGot restaurant review website",
   "main": "server/index.js",
   "scripts": {
+    "database": "mongod",
+    "seed-database": "node db/controllers/seed_database.js",
     "test": "jest",
     "react-dev": "webpack --watch",
     "start": "nodemon --inspect server/index.js"
