@@ -108,4 +108,4 @@ class InfoListElementOpeningHours extends React.Component {
   }
 }
 
-export { InfoList, InfoListElement, InfoListElementOpeningHours };
+export {InfoList, InfoListElement, InfoListElementOpeningHours};

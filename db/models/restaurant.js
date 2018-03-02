@@ -6,6 +6,11 @@ var db = mongoose.connect('mongodb://localhost/wegot');
 var restaurantSchema = mongoose.Schema({
   result: {
     place_id: { type: String, unique: true },
+    name: String,
+    formatted_address: String,
+    international_phone_number: String,
+    website: String,
+    url: String,
     opening_hours: {
       open_now: Boolean,
       periods: [
@@ -21,11 +26,7 @@ var restaurantSchema = mongoose.Schema({
         }
       ],
       weekday_text: [String]
-    },
-    formatted_address: String,
-    international_phone_number: String,
-    website: String,
-    url: String
+    }
   }
 });
 
@@ -44,7 +45,16 @@ var remove = (queryObj) => {
   return Restaurant.remove(queryObj);
 };
 
+var count = (queryObj) => {
+  return Restaurant.count(queryObj);
+};
+
+//database functions
 exports.find = find;
 exports.insert = insert;
 exports.remove = remove;
+exports.count = count;
+
+//misc objects for testing and database seeding
+exports.Restaurant = Restaurant;
 exports.mongoose = mongoose;

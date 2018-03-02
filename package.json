@@ -27,6 +27,7 @@
     "enzyme-adapter-react-16": "^1.1.1",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor.git",
     "jest": "^22.4.2",
+    "jsdom": "^11.6.2",
     "sinon": "^4.4.2",
     "webpack": "^3.11.0"
   },
