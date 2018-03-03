@@ -1,9 +1,12 @@
 var express = require('express');
 var router = express.Router();
+var getRestaurantById = require('../../db/controllers/getRestaurantById.js');
 
 router.get('/', (req, res) => {
-  res.set({ 'Access-Control-Allow-Origin': '*' })
-  res.send('This endpoint will send a restaurant json');
+  var restaurantId = req.query.id;
+  getRestaurantById(restaurantId).then((result) => {
+    res.send(result);
+  });
 });
 
 module.exports = router;

@@ -14,8 +14,7 @@ app.use('/', express.static('client/dist'));
 app.use('/restaurants', restaurantsRouter);
 
 app.options((req, res) => {
-  res.set({ 'Access-Control-Allow-Origin': '*' });
-  res.send('OPTIONS OK');
+  res.send('OK');
 });
 
 var port = process.env.PORT || 3000;
