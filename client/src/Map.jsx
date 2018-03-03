@@ -7,7 +7,7 @@ var Map = (props) => {
       Map Goes Here!
     </div>
   );
-}
+};
 
 
-export default Map;
+export { Map };

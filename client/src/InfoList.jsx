@@ -70,7 +70,7 @@ class InfoListElementOpeningHours extends React.Component {
 
     var hours = now.getHours().toString();
     var minutes = now.getMinutes().toString();
-    if(minutes.length === 1) {
+    if (minutes.length === 1) {
       minutes = '0' + minutes;
     }
     var time = Number(hours + minutes);
@@ -108,4 +108,4 @@ class InfoListElementOpeningHours extends React.Component {
   }
 }
 
-export default InfoList;
+export {InfoList, InfoListElement, InfoListElementOpeningHours};
