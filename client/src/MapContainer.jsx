@@ -12,7 +12,7 @@ export class MapContainer extends React.Component {
         <div id="map" className="map">
           <Map google={this.props.google} zoom={16}
             initialCenter={this.props.geometry.location}
-            style={{ height: '350px', width: '350px' }} >
+            style={{ height: '350px', width: '33%' }} >
             <Marker position={this.props.geometry.location} />
           </Map>
         </div>

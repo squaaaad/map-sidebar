@@ -66,6 +66,9 @@ class InfoListElementOpeningHours extends React.Component {
   getOpenNow() {
     var now = new Date(Date.now());
     var weekdayNow = now.getDay() - 1;
+    if (weekdayNow === -1) {
+      weekdayNow = 6;
+    }
 
     var hours = now.getHours().toString();
     var minutes = now.getMinutes().toString();
@@ -87,7 +90,7 @@ class InfoListElementOpeningHours extends React.Component {
         return timeNow >= timeOpen && timeNow <= timeClose;
       } else if (period.open.day === weekdayNow) {
         return timeNow >= timeOpen;
-      } else if (priod.close.day === weekdayNow) {
+      } else if (period.close.day === weekdayNow) {
         return timeNow <= timeClose;
       }
     });
