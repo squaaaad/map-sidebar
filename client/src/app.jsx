@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { InfoList } from './infoList.jsx';
-import { Map } from './map.jsx';
+import MapContainer from './mapContainer.jsx';
 
 var server = location.origin || 'http://localhost:3000';
 
@@ -9,12 +9,9 @@ class App extends React.Component { //props: restaurant object
   constructor(props) {
     super(props);
     this.state = {
-      restaurant: props.restaurant
-    }
-  }
-
-  componentDidMount() {
-    this.getRestaurant('ChIJP5PrLYSAhYARBcWhJXs55P4');
+      restaurant: null
+    };
+    this.getRestaurant(props.restaurantId);
   }
 
   getRestaurant (id) {
@@ -22,18 +19,23 @@ class App extends React.Component { //props: restaurant object
       params: {
         id: id
       }
-    }).then((result) => {
-      console.log('received:', result);
-    })
+    }).then((response) => {
+      console.log('received:', response);
+      this.setState({ restaurant: response.data.result });
+    });
   }
 
   render() {
-    return (
-      <div className="app">
-        <InfoList restaurant={this.state.restaurant} />
-        <Map geometry={this.state.restaurant.geometry} />
-      </div>
-    );
+    if (!this.state.restaurant) {
+      return <div> Loading... </div>;
+    } else {
+      return (
+        <div className="app">
+          <InfoList restaurant={this.state.restaurant} />
+          <MapContainer geometry={this.state.restaurant.geometry} />
+        </div>
+      );
+    }
   }
 }
 

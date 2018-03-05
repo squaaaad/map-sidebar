@@ -26,6 +26,12 @@ var restaurantSchema = mongoose.Schema({
         }
       ],
       weekday_text: [String]
+    },
+    geometry: {
+      location: {
+        lat: Number,
+        lng: Number
+      }
     }
   }
 });

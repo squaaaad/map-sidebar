@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'underscore';
 
 var InfoList = (props) => {
   var info = { //refactor to include data necessary for google maps
@@ -34,6 +35,7 @@ var InfoList = (props) => {
       <InfoListElementOpeningHours info={info.openingHours} />
       <InfoListElement info={info.address} />
       <InfoListElement info={info.phone} />
+      <InfoListElement info={info.website} />
       <InfoListElement info={info.directions} />
     </div>
   );
@@ -63,35 +65,51 @@ class InfoListElementOpeningHours extends React.Component {
 
   getOpenNow() {
     var now = new Date(Date.now());
-    var weekdayNow = now.getDay();
-    var period = this.props.info.data.periods[weekdayNow];
-    var open = Number(period.open.time);
-    var close = Number(period.close.time);
+    var weekdayNow = now.getDay() - 1;
 
     var hours = now.getHours().toString();
     var minutes = now.getMinutes().toString();
     if (minutes.length === 1) {
       minutes = '0' + minutes;
     }
-    var time = Number(hours + minutes);
+    var timeNow = Number(hours + minutes);
+    console.log('timeNow is', timeNow)
 
-    var openNow;
-    if (time > open && time < close) {
-      openNow = 'Open Now';
+    var openNow = _.some(this.props.info.data.periods, (period) => {
+      var timeOpen = Number(period.open.time);
+      var timeClose = Number(period.close.time);
+      console.log('open is', timeOpen, 'close is', timeClose)
+      if (period.open.day !== weekdayNow && period.close.day !== weekdayNow) {
+        console.log('case 1')
+        return false;
+      } else if (period.open.day === weekdayNow && period.close.day === weekdayNow) {
+        console.log('case 2');
+        return timeNow >= timeOpen && timeNow <= timeClose;
+      } else if (period.open.day === weekdayNow) {
+        return timeNow >= timeOpen;
+      } else if (priod.close.day === weekdayNow) {
+        return timeNow <= timeClose;
+      }
+    });
+
+    if (openNow) {
+      return 'Open';
     } else {
-      openNow = 'Closed';
+      return 'Closed';
     }
-
-    return openNow;
   }
 
   getTimeRange() {
     var now = new Date(Date.now());
-    var weekdayNow = now.getDay();
+    var weekdayNow = now.getDay() - 1;
+    if (weekdayNow === -1) {
+      weekdayNow = 6;
+    }
     return this.props.info.data.weekday_text[weekdayNow].split(': ')[1];
   }
 
   render() {
+    console.log(this.props);
     var openNow = this.getOpenNow();
     var timeRange = this.getTimeRange();
 
