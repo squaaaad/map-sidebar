@@ -31,7 +31,7 @@ var InfoList = (props) => {
   };
 
   return (
-    <div className="info-list">
+    <div className="flexbox-col info-list">
       <InfoListElementOpeningHours info={info.openingHours} />
       <InfoListElement info={info.address} />
       <InfoListElement info={info.phone} />
@@ -42,7 +42,7 @@ var InfoList = (props) => {
 };
 
 var InfoListElement = (props) => (
-  <div className="info-list-element">
+  <div className="flexbox-row info-list-element">
     <div className="info-list-element-icon">
       <img src={props.info.icon} />
     </div>
@@ -117,12 +117,14 @@ class InfoListElementOpeningHours extends React.Component {
     var timeRange = this.getTimeRange();
 
     return (
-      <div className="info-list-element">
-        <div className="info-list-element-icon">
-          <img src={this.props.info.icon} />
-        </div>
-        <div className="info-list-text">
-          {openNow + ' --- ' + timeRange}
+      <div className="flexbox-col info-list-element">
+        <div className="flexbox-row">
+          <div className="info-list-element-icon">
+            <img src={this.props.info.icon} />
+          </div>
+          <div className="info-list-text">
+            {openNow + ' --- ' + timeRange}
+          </div>
         </div>
       </div>
     );

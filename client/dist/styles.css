@@ -1,6 +1,74 @@
 body {
   height: 100%;
   width: 100%;
-  font-family: 'verdana', 'sans-serif';
+  font-family: 'roboto', sans-serif;
   font-size: 12px;
+  background-color: lightgrey;
+}
+
+.flexbox-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.flexbox-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+#app {
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+
+.app {
+  position: fixed;
+  top: 0px;
+  width: 330px;
+
+  padding: 10px;
+  background-color: white;
+}
+
+.info-list {
+
+}
+
+.info-list-icon {
+
+}
+
+.info-list-element {
+  width: 85%;
+  justify-content: flex-start;
+  padding: 5px;
+}
+
+.info-list-text {
+  letter-spacing: 0.13em;
+  padding: 10px;
+}
+
+a, a:hover {
+  text-decoration: none;
+  color: black;
+}
+
+img {
+  padding-right: 10px;
+}
+
+.map-container {
+  height: 320px;
+  width: 300px;
+  padding: 10px 0 10px 0;
 }

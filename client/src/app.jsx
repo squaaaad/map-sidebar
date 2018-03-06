@@ -30,7 +30,7 @@ class App extends React.Component { //props: restaurant object
       return <div> Loading... </div>;
     } else {
       return (
-        <div className="app">
+        <div className="flexbox-col app">
           <InfoList restaurant={this.state.restaurant} />
           <MapContainer geometry={this.state.restaurant.geometry} />
         </div>

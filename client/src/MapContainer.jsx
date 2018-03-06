@@ -9,13 +9,14 @@ export class MapContainer extends React.Component {
   render() {
     return (
       <div className="map-container">
-        <div id="map" className="map">
-          <Map google={this.props.google} zoom={16}
-            initialCenter={this.props.geometry.location}
-            style={{ height: '350px', width: '33%' }} >
-            <Marker position={this.props.geometry.location} />
-          </Map>
-        </div>
+        <Map google={this.props.google} zoom={16}
+          initialCenter={this.props.geometry.location}
+          style={{
+            height: '320px',
+            width: '300px'
+           }} >
+          <Marker position={this.props.geometry.location} />
+        </Map>
       </div>
     );
   }
