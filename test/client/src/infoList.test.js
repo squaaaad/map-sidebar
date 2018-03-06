@@ -14,6 +14,6 @@ describe('<InfoList />', () => {
 
   test('has at least 3 InfoListElement components', () => {
     const wrapper = enzyme.mount(<InfoList restaurant={restaurant.result} />);
-    expect(wrapper.find(InfoListElement).length).toBe(3);
+    expect(wrapper.find(InfoListElement).length).toBe(4);
   });
 });

@@ -13,9 +13,11 @@ export class MapContainer extends React.Component {
           initialCenter={this.props.geometry.location}
           style={{
             height: '320px',
-            width: '300px'
+            width: '280px'
            }} >
-          <Marker position={this.props.geometry.location} />
+          <Marker position={this.props.geometry.location}
+            icon={location.origin + '/icons/map_icon_small.png'}
+          />
         </Map>
       </div>
     );

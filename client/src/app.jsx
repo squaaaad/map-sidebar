@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import { InfoList } from './infoList.jsx';
-import MapContainer from './mapContainer.jsx';
+import { InfoList } from './InfoList.jsx';
+import MapContainer from './MapContainer.jsx';
 
 var server = location.origin || 'http://localhost:3000';
 
@@ -9,7 +9,7 @@ class App extends React.Component { //props: restaurant object
   constructor(props) {
     super(props);
     this.state = {
-      restaurant: null
+      restaurant: props.restaurant
     };
     this.getRestaurant(props.restaurantId);
   }
@@ -22,6 +22,8 @@ class App extends React.Component { //props: restaurant object
     }).then((response) => {
       console.log('received:', response);
       this.setState({ restaurant: response.data.result });
+    }).catch((err) => {
+      console.error('Failed to fetch restaurant data from server:', err);
     });
   }
 
