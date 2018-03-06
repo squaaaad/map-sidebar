@@ -59,7 +59,7 @@ class InfoListElementOpeningHours extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showHours: true
+      showHours: false
     };
   }
 
@@ -134,18 +134,18 @@ class InfoListElementOpeningHours extends React.Component {
           </div>
           <div className="flexbox-row info-list-text opening-hours-title">
             <div>
-              <div className="periods-element-day">{openNow}</div>
+              <div className="periods-element-day open-now-text">{openNow}</div>
             </div>
             <div>
               <div className="periods-element-time">{timeRange.time1}</div>
               <div className="periods-element-time">{timeRange.time2}</div>
             </div>
           </div>
-          <div className="expand-arrow" style={ this.state.showHours ? { transform: 'rotate(0deg)' } : { transform: 'rotate(180deg)' }}>
+          <div className="expand-arrow" style={ this.state.showHours ? { transform: 'rotate(180deg)' } : { transform: 'rotate(0deg)' }}>
             <i className="fas fa-angle-down fa-lg"/>
           </div>
         </div>
-        <div className="flexbox-col periods" style={ this.state.showHours ? {display: 'none'} : {'display': 'flex'}}>
+        <div className="flexbox-col periods" style={ this.state.showHours ? {display: 'flex'} : {'display': 'none'}}>
           <Periods weekdayText={this.props.info.data.weekday_text}/>
         </div>
       </div>
@@ -172,10 +172,16 @@ var Periods = (props) => {
       time2: time2
     }
 
+    var weekdayNum = new Date(Date.now()).getDay() - 1;
+    if (weekdayNum === -1) {
+      weekdayNum = 6;
+    }
+
     return (
-      <div key={index} className="flexbox-col periods-element">
+      <div key={index} className="flexbox-col periods-element"
+        style={{'fontWeight': weekdayNum === index ? 'bold' : 'normal'}} >
         <div className="flexbox-row periods-element-part1">
-          <div className="periods-element-day">{periodObj.weekday}</div>
+          <div className="periods-element-day" >{periodObj.weekday}</div>
           <div className="periods-element-time">{periodObj.time1}</div>
         </div>
         <div className="periods-element-part2">
@@ -185,7 +191,7 @@ var Periods = (props) => {
     )
 
   });
-//prop will be weekdayText
+
   return (
       <div className="flexbox-col periods">
         {periodDivs}

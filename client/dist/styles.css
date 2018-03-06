@@ -93,6 +93,10 @@ a:hover {
   padding: 5px 0 0 40px;
 }
 
+.open-now-text {
+  font-weight: bold;
+}
+
 .periods-element-part1 {
   width: 100%;
   justify-content: space-between;
@@ -109,6 +113,6 @@ a:hover {
 
 .map-container {
   height: 320px;
-  width: 275px;
+  width: 280px;
   padding: 10px 0 10px 0;
 }
