@@ -1,31 +1,21 @@
 import React from 'react';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 
-export class MapContainer extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div className="map-container">
-        <Map google={this.props.google} zoom={16}
-          initialCenter={this.props.geometry.location}
-          style={{
-            height: '320px',
-            width: '280px'
-           }} >
-          <Marker position={this.props.geometry.location}
-            icon={location.origin + '/icons/map_icon_small.png'}
-          />
-        </Map>
-      </div>
-    );
-  }
-
-}
-
+export var MapContainer = (props) => (
+  <div className="sidebar-map-container">
+    <Map google={props.google} zoom={16}
+      initialCenter={props.geometry.location}
+      style={{
+        height: '320px',
+        width: '280px'
+       }} >
+      <Marker position={props.geometry.location}
+        icon={location.origin + '/icons/map_icon_small.png'}
+      />
+    </Map>
+  </div>
+);
 
 export default GoogleApiWrapper({
   apiKey: 'AIzaSyBx8Ziw0lS6tVpgKElh6zB9Udsa6mvMUTE'
-})(MapContainer)
+})(MapContainer);

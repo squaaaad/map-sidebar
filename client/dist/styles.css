@@ -6,112 +6,113 @@ body {
   background-color: lightgrey;
 }
 
-.flexbox-col {
+.sidebar-flexbox-col {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.flexbox-row {
+.sidebar-flexbox-row {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 }
 
-#app {
+#sidebar-app {
 
   justify-content: flex-end;
 }
 
-.app {
+.sidebar-app {
   width: 300px;
   padding: 10px;
   background-color: white;
   margin: 10px;
 }
 
-.info-list {
+.sidebar-sidebar-info-list {
   letter-spacing: 0.1em;
 }
 
-.info-list-element {
+.sidebar-info-list-element {
   width: 85%;
   justify-content: flex-start;
 }
 
-.info-list-element-icon {
+.sidebar-info-list-element-icon {
   padding: 8px;
   color: #ae002f;
 }
 
-a {
+.sidebar-anchor {
   text-decoration: none;
   color: black;
 }
 
-a:hover {
+.sidebar-anchor:hover {
   color: #ae002f;
 }
 
-.info-list-text {
+.sidebar-info-list-text {
   padding: 10px;
 }
 
-.info-list-text:hover {
+.sidebar-info-list-text:hover {
   color: #ae002f;
   cursor: pointer;
 }
 
-.opening-hours-title {
+.sidebar-opening-hours-title {
   justify-content: space-between;
   width: 100%;
 }
 
-.opening-hours-title:hover {
+.sidebar-opening-hours-title:hover {
   color: #ae002f;
 }
 
-.expand-arrow {
+.sidebar-expand-arrow {
   height: 20px;
   width: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
   transform: rotate(0deg);
+  cursor: pointer;
 }
 
-.periods {
+.sidebar-periods {
   justify-content: left;
   align-items: stretch;
   width: 100%;
   padding-bottom: 5px;
 }
 
-.periods-element {
+.sidebar-periods-element {
   padding: 5px 0 0 40px;
 }
 
-.open-now-text {
+.sidebar-open-now-text {
   font-weight: bold;
 }
 
-.periods-element-part1 {
+.sidebar-periods-element-info {
   width: 100%;
   justify-content: space-between;
 }
 
-.periods-element-part2 {
+.sidebar-periods-element-info-additional {
   width: 100%;
   align-content: right;
 }
 
-.periods-element-time {
+.sidebar-periods-element-time {
   text-align: right;
 }
 
-.map-container {
+.sidebar-map-container {
   height: 320px;
   width: 280px;
   padding: 10px 0 10px 0;

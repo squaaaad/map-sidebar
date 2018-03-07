@@ -5,7 +5,7 @@ import MapContainer from './MapContainer.jsx';
 
 var server = location.origin || 'http://localhost:3000';
 
-class App extends React.Component { //props: restaurant object
+class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -29,10 +29,10 @@ class App extends React.Component { //props: restaurant object
 
   render() {
     if (!this.state.restaurant) {
-      return <div> Loading... </div>;
+      return <div> Loading Sidebar... </div>;
     } else {
       return (
-        <div className="flexbox-col app">
+        <div className="sidebar-flexbox-col sidebar-app">
           <InfoList restaurant={this.state.restaurant} />
           <MapContainer geometry={this.state.restaurant.geometry} />
         </div>
