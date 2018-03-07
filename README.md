@@ -5,8 +5,9 @@ This service forms a part of the WeGot food review website. It renders basic inf
 ## Description
 The service is composed of a server, a  client, and a database.
 ### Server API
-Serves static client files in response to a GET request to the root endpoint.
-It also serves json formatted restaurant data in response to a GET request to the /restaurants endpoint.
+- A request to the root will redirect to the /restaurants/:id path with a default restaurant id
+- Serves static client files in response to a GET request to the /restaurants/:id path
+- It also serves json formatted restaurant data in response to a GET request to the /api/restaurants/:id/sidebar endpoint.
 ### Database
 A MongoDB database that holds restaurant information.
 ### Client
@@ -14,11 +15,11 @@ Takes in a restaurant ID and requests restaurant information from the server. Re
 
 ## Getting Started
 ### Prerequisites
--npm
--node
--jest
--webpack
--MongoDB
+- npm
+- node
+- jest
+- webpack
+- MongoDB
 
 ### Installation
 1. Install dependencies: `npm install`
@@ -26,7 +27,7 @@ Takes in a restaurant ID and requests restaurant information from the server. Re
 3. Seed database: `npm run seed-database`
 4. Start server: `npm start`
 
-To start, in your browser navigate to: [http://localhost:3000](http://localhost:3000)
+To start, in your browser navigate to: [http://localhost:3003](http://localhost:3003)
 
 ## Tests
 Run: `npm test`
