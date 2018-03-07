@@ -3,7 +3,7 @@ import axios from 'axios';
 import { InfoList } from './InfoList.jsx';
 import MapContainer from './MapContainer.jsx';
 
-var server = location.origin || 'http://localhost:3000';
+var apiURL = location.origin + '/api/restaurants';
 
 class App extends React.Component {
   constructor(props) {
@@ -11,20 +11,17 @@ class App extends React.Component {
     this.state = {
       restaurant: props.restaurant
     };
-    this.getRestaurant(props.restaurantId);
+    this.getRestaurantData(props.restaurantId);
   }
 
-  getRestaurant (id) {
-    axios.get(server + '/restaurants', {
-      params: {
-        id: id
-      }
-    }).then((response) => {
-      console.log('received:', response);
-      this.setState({ restaurant: response.data.result });
-    }).catch((err) => {
-      console.error('Failed to fetch restaurant data from server:', err);
-    });
+  getRestaurantData (id) {
+    axios.get(apiURL + '/' + id)
+      .then((response) => {
+        console.log('received:', response);
+        this.setState({ restaurant: response.data.result });
+      }).catch((err) => {
+        console.error('Failed to fetch restaurant data from server:', err);
+      });
   }
 
   render() {
