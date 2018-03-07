@@ -23,5 +23,5 @@ app.use('/api/restaurants', restaurantsApiRouter);
 
 
 
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 3003;
 app.listen(port, () => { console.log('Listening on http://localhost:' + port); });
