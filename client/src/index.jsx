@@ -1,6 +1,7 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
-import restaurant from '../../restaurants_data_small.js';
 import { App } from './app.jsx';
 
-ReactDOM.render(<App restaurant={restaurant.result} />, document.getElementById('app'));
+var restaurantId = location.pathname.split('restaurants/')[1];
+
+ReactDOM.render(<App restaurantId={restaurantId} restaurant={null}/>, document.getElementById('sidebar-app'));
