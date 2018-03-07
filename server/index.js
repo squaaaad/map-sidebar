@@ -18,6 +18,11 @@ app.options((req, res) => {
 app.get('/', (req, res) => {
   res.redirect('/restaurants/ChIJP5PrLYSAhYARBcWhJXs55P4');
 });
+
+app.get('/bundle.js', (req, res) => { //for proxy servers
+  res.sendFile('./client/dist/bundle.js');
+})''
+
 app.use('/restaurants', restaurantsRouter);
 app.use('/api/restaurants', restaurantsApiRouter);
 
