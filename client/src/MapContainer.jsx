@@ -10,7 +10,7 @@ export var MapContainer = (props) => (
         width: '280px'
        }} >
       <Marker position={props.geometry.location}
-        icon={location.href + '/icons/map_icon_small.png'}
+        icon="http://res.cloudinary.com/madlicorice/image/upload/v1520470317/map_icon.png"
       />
     </Map>
   </div>
