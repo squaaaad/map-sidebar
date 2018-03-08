@@ -17,5 +17,5 @@ export var MapContainer = (props) => (
 );
 
 export default GoogleApiWrapper({
-  apiKey: 'AIzaSyBx8Ziw0lS6tVpgKElh6zB9Udsa6mvMUTE'
+  apiKey: 'AIzaSyAZeaxvjPuMA8T8pyjr7Fkld8zLYgtn8Mo'
 })(MapContainer);

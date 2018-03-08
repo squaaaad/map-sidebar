@@ -115,3 +115,10 @@ body {
   width: 280px;
   padding: 10px 0 10px 0;
 }
+
+.sidebar-map-container > div {
+  /* necessary to overwrite the styling
+  of an npm package. Do not remove */
+  height: 320px !important;
+  width: 280px !important;
+}
