@@ -8,7 +8,7 @@
     "seed-database": "node db/controllers/seed_database.js",
     "test": "jest",
     "react-dev": "webpack --watch",
-    "start": "nodemon --inspect server/index.js"
+    "start": "nodemon server/index.js"
   },
   "repository": {
     "type": "git",
