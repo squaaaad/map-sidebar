@@ -21,6 +21,7 @@ app.get('/bundle.js', (req, res) => {
 });
 
 app.use('/restaurants', restaurantsRouter);
+
 app.use('/api/restaurants', restaurantsApiRouter);
 
 

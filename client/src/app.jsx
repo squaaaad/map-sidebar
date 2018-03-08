@@ -3,8 +3,6 @@ import axios from 'axios';
 import { InfoList } from './InfoList.jsx';
 import MapContainer from './MapContainer.jsx';
 
-var apiURL = location.origin + '/api/restaurants';
-
 class App extends React.Component {
   constructor(props) {
     super(props);
