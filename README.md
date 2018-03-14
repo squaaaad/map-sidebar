@@ -1,6 +1,6 @@
 # map-side-bar
 ## Contributors
-Intitial Front-End Design: Paolo Roxas
+Intitial Front-End Design: Paolo Roxas, 
 Back-End Overhaul: Sean Lang-Brown
 
 ## Purpose
