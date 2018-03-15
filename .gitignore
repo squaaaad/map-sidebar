@@ -67,5 +67,5 @@ typings/
 #database Production size seed data
 seedDB/fakerData.json
 seedDB/fakerPlaces.csv
-seedDB/fakeOpenHours.csv
+seedDB/fakerOpenHours.csv
 seedDB/fakerOpenPeriods.json
