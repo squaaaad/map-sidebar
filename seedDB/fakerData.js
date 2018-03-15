@@ -34,39 +34,42 @@ const randomHours = (day) => {
 
 const militaryTimeToText = (hours) => {
   let hr = Math.floor(hours / 100);
+  let evening = hr < 12 ? 'AM' : 'PM';
+  if (hr > 12) {
+    hr = hr - 12;
+  }
+  if (hr === 0) {
+    hr = '12';
+  }
   let min = hours % 100;
-  return `${hr < 10 ? '0' : ''}${hr}:${min < 10 ? '0' : ''}${min} ${hr < 12 ? 'AM' : 'PM'}`;
+  if (min < 10) {
+    min = '0' + min;
+  }
+  return `${hr}:${min} ${evening}`;
 }
 
-const openHoursText = (periods) => {
-  let text = [];
-  for (var i = 0; i < periods.length; i++) {
-    let hours = periods[i];
-    let dayText = `${numberToDay(hours.open.day)}: ${militaryTimeToText(hours.open.time)} – ${hours.open.day !== hours.close.day ? numberToDay(hours.close.day) + ' ' : ''}${militaryTimeToText(hours.close.time)}`
-    text.push(dayText);
+const openHoursText = (hours, day) => {
+  if (hours) {
+    return `${numberToDay(hours.open.day)}: ${militaryTimeToText(hours.open.time)} – ${hours.open.day !== hours.close.day ? numberToDay(hours.close.day) + ' ' : ''}${militaryTimeToText(hours.close.time)}`;
+  } else {
+    return `${numberToDay(day)}: -`;
   }
-  return text;
 }
 
 const randomWeeklyHours = () => {
-  let days = [0, 1, 2, 3, 4, 5, 6];
-  for (var i = 0; i < 10; i++) {
-    if (i === 6) {
-      let swap = days[6];
-      days[6] = days[0];
-      days[0] = swap;
+  let openHours = [];
+  let openText = [];
+  for (var i = 0; i < 7; i++) {
+    let tenPercentChance = (0.1 > Math.random());
+    if (tenPercentChance) {
+      openText.push(openHoursText(null, i));
     } else {
-      let swap = days[i];
-      days[i] = days[i + 1];
-      days[i + 1] = swap;
+      let hours = randomHours(i);
+      openHours.push(hours);
+      openText.push(openHoursText(hours));
     }
   }
-  let openHours = [];
-  let daysOpen = Math.floor(Math.random() * days.length);
-  for (var k = 0; k < daysOpen; k++) {
-    openHours.push(randomHours(k));
-  }
-  return {periods: openHours, text: openHoursText(openHours)};
+  return {periods: openHours, text: openText};
 }
 
 const googleMapsLink = (lat, lon) => (`https://maps.google.com/?q=${lat},${lon}`);
@@ -82,12 +85,16 @@ const intlFormatPhoneNum = (phone) => {
   return countryCode + number;
 }
 
-const fakerRestaurant = (i) => {
+const fakerRestaurant = (i, indexStart) => {
+  //console.log('indexStart', indexStart);
+  
+  let index = indexStart + i;
+  //console.log('i', index.toString());
   let lat = Faker.Address.latitude();
   let lon = Faker.Address.longitude();
   let hours = randomWeeklyHours();
   let result = {result: {
-    place_id: i.toString(), //numbers 1-10mil
+    place_id: index.toString(), //numbers 1-10mil
     name: Faker.Company.companyName(),
     formatted_address: Faker.Address.streetAddress(), //number and street
     international_phone_number: intlFormatPhoneNum(Faker.PhoneNumber.phoneNumber()),  //+1 9 digit
@@ -108,4 +115,15 @@ const fakerRestaurant = (i) => {
   return result;
 };
 
-console.log(JSON.stringify(fakerRestaurant(1)));
+const fakeData = (i, indexStart) => {
+  let results = [];
+  indexStart = indexStart || 0;
+  for (var j = 1; j < i + 1; j++) {
+    results.push(fakerRestaurant(j, indexStart));
+  }
+  return results;
+}
+
+
+module.exports.fakeData = fakeData;
+module.exports.fakeItem = fakerRestaurant;
