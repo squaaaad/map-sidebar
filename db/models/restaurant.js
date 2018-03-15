@@ -1,9 +1,7 @@
 var mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
-databaseHost = process.env.DATABASE_HOST || 'localhost';
-var db = mongoose.connect('mongodb://' + databaseHost + '/wegot-sidebar', {
-  useMongoClient: true
-});
+databaseHost = process.env.DATABASE_HOST || '127.0.0.1';
+var db = mongoose.connect('mongodb://' + databaseHost + '/wegot-sidebar');
 
 var restaurantSchema = mongoose.Schema({
   result: {
@@ -45,6 +43,10 @@ var find = (queryObj) => {
   return Restaurant.find(queryObj);
 };
 
+var findOne = (queryObj) => {
+  return Restaurant.find(queryObj).limit(1);
+};
+
 var insert = (documents) => {
   return Restaurant.insertMany(documents);
 };
@@ -59,6 +61,7 @@ var count = (queryObj) => {
 
 //database functions
 exports.find = find;
+exports.findOne = findOne;
 exports.insert = insert;
 exports.remove = remove;
 exports.count = count;
