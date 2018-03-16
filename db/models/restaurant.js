@@ -39,12 +39,12 @@ var restaurantSchema = mongoose.Schema({
 var Restaurant = mongoose.model('Restaurant', restaurantSchema);
 
 
-var find = (queryObj) => {
-  return Restaurant.find(queryObj);
+var find = (id) => {
+  return Restaurant.find({ 'result.place_id': id });
 };
 
-var findOne = (queryObj) => {
-  return Restaurant.find(queryObj).limit(1);
+var findOne = (id) => {
+  return Restaurant.find({ 'result.place_id': id }).limit(1);
 };
 
 var insert = (documents) => {
@@ -60,8 +60,8 @@ var count = (queryObj) => {
 };
 
 //database functions
-exports.find = find;
-exports.findOne = findOne;
+exports.findRestaurants = find;
+exports.findOneRestaurant = findOne;
 exports.insert = insert;
 exports.remove = remove;
 exports.count = count;

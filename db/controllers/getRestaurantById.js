@@ -1,7 +1,7 @@
 var database = require('../models/restaurant.js');
 
 module.exports = (id) => {
-  return database.findOne({ 'result.place_id': id })
+  return database.findOneRestaurant(id)
     .then((result) => {
       return result[0];
     })
