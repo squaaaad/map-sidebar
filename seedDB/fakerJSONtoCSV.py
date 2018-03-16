@@ -14,7 +14,7 @@ def jsonKV(key, value) :
     
 basePath = '/Users/slangbro/Code/HackReactor/map-sidebar/seedDB/'
 File_in = basePath + "fakerData.json"
-File_out_places = basePath + "fakerPlaces.csv"
+File_out_places = basePath + "fakerPlacesNoPeriods.csv"
 File_out_openHours = basePath + "fakerOpenHours.csv"
 File_out_json = basePath + "fakerOpenPeriods.json"
 
@@ -44,23 +44,23 @@ with io.open(File_in, mode="r", encoding="utf-8") as jsonFile:
                     #print(documentRow)
                     document = json.loads(documentRow)['result'];
                     
-                    placesRow = [document['place_id'], document['name'], document['formatted_address'], document['international_phone_number'], document['website'], document['url'], document['opening_hours']['open_now'],json.dumps(document['opening_hours']['periods']), document['opening_hours']['weekday_text'], document['geometry']['location']['lat'], document['geometry']['location']['lng']]
+                    placesRow = [document['place_id'], document['name'], document['formatted_address'], document['international_phone_number'], document['website'], document['url'], document['opening_hours']['open_now'],'''json.dumps(document['opening_hours']['periods']),''' document['opening_hours']['weekday_text'], document['geometry']['location']['lat'], document['geometry']['location']['lng']]
                 
                     placesCSV.writerow(placesRow)
                     
         
                     
-                    for period in document['opening_hours']['periods']:
-                        #add to places csv
-                        periodRow = [document['place_id'], period['open']['day'], period['open']['time'], period['close']['day'], period['close']['time']]
-                        openHoursCSV.writerow(periodRow)
-                        
-                        #add to json
-                        
-                        jsonRow = '{ place_id: ' + document['place_id'] + ', periods: ' + json.dumps(period) + '}'
-                        
-                        openPeriodsJSON.write(jsonRow)
-                        openPeriodsJSON.write("\n")
+                    # for period in document['opening_hours']['periods']:
+                    #     #add to places csv
+                    #     periodRow = [document['place_id'], period['open']['day'], period['open']['time'], period['close']['day'], period['close']['time']]
+                    #     openHoursCSV.writerow(periodRow)
+                    #     
+                    #     #add to json
+                    #     
+                    #     jsonRow = '{ place_id: ' + document['place_id'] + ', periods: ' + json.dumps(period) + '}'
+                    #     
+                    #     openPeriodsJSON.write(jsonRow)
+                    #     openPeriodsJSON.write("\n")
             
             
         
