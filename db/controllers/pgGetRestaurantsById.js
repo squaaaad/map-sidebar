@@ -1,19 +1,25 @@
-const pgClient = require('pg');
+const pg = require('pg');
 const promise = require('bluebird');
 const _ = require('lodash');
 
 process.env.PGHOST = process.env.DATABASE_HOST || 'localhost';
 process.env.PGPORT = process.env.DATABASE_PORT || '5432';
+process.env.PGDATABASE = 'wegotsidebar';
 
 
-var db  = new pgClient();
+const db  = new pg.Client();
 
-await db.connect();
+const connect = async () => {
+  await db.connect();
+  console.log('connected to database', process.env.PGDATABASE);
+}
 
-const applySchema = (place, openHours) {
+const applySchema = (place, openHours) => {
+  console.log('place:', place);
+  console.log('openhours', openHours);
   return {
     result: {
-      _id: place._id,
+      _id: place.period_id,
       place_id: place.place_id,
       name: place.name,
       formatted_address: place.formatted_address,
@@ -24,7 +30,7 @@ const applySchema = (place, openHours) {
         open_now: place.open_now,
         periods: _.map(openHours, (period) => {
           return {
-            _id: period._id,
+            //_id: period._id,
             close: {
               day: period.closeday,
               time: period.closetime
@@ -57,7 +63,7 @@ const findOne = (id) => {
   .then((place) => {
     return db.query('SELECT * FROM openhours WHERE place_id = $1 ORDER BY openday', [id])
     .then((openhours) => {
-      return applySchema(place[0], openhours);
+      return applySchema(place.rows[0], openhours.rows);
     })
     .catch((error) => {
       console.log('pg query error:', error);
@@ -69,6 +75,7 @@ const insert = () => {};
 const remove = () => {};
 const count = () => {};
 
+connect();
 
 exports.findRestaurants = find;
 exports.findOneRestaurant = findOne;
