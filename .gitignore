@@ -69,3 +69,4 @@ seedDB/fakerData.json
 seedDB/fakerPlaces.csv
 seedDB/fakerOpenHours.csv
 seedDB/fakerOpenPeriods.json
+seedDB/fakerPlacesNoPeriods.csv
