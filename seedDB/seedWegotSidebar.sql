@@ -1,4 +1,4 @@
--- run with: psql -user awsadmin -d postgres -a -f seedWegotSidebar.sql -v v1=PWD
+-- run with: psql -d postgres -a -f seedWegotSidebar.sql
 
 --SETUP SYSTEM for large file load, see; https://www.postgresql.org/docs/current/static/populate.html
 ALTER SYSTEM SET max_wal_size = 4;
@@ -53,16 +53,14 @@ ALTER TABLE places ADD UNIQUE (place_id);
 ALter TABLE openhours ADD period_id SERIAL PRIMARY KEY;
 ALTER TABLE openhours ADD FOREIGN KEY(place_id) REFERENCES places (place_id);
 
---create index to make primary key lookup and join optimized
-CREATE INDEX placesToOpenHours ON openhours (place_id ORDER BY openday);
-
-
+--create index to optimize primary key lookup and join
+CREATE INDEX placesToOpenHours ON openhours (place_id);
+--create index to optimiz ordering open periods by day
+CREATE INDEX openHoursOrdered ON openhours (openday);
 
 
 ANALYZE places;
 ANALYZE openhours;
 
 -- reset system 
-
-
 ALTER SYSTEM RESET wal_level;
