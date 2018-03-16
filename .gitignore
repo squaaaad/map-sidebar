@@ -63,3 +63,12 @@ typings/
 
 # dotenv environment variables file
 .env
+
+#database Production size seed data
+seedDB/fakerData.json
+seedDB/fakerPlaces.csv
+seedDB/fakerOpenHours.csv
+seedDB/fakerOpenPeriods.json
+seedDB/fakerPlacesNoPeriods.csv
+seedDB/fakerJSONtoCSVnoPeriods.csv
+seedDB/fakerPlacesOriginal.csv

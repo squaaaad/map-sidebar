@@ -8,6 +8,7 @@
     "seed-database": "node db/controllers/seed_database.js",
     "test": "jest",
     "react-dev": "webpack --watch",
+    "start-dev": "nodemon server/index.js",
     "start": "node server/index.js",
     "docker-start": "DATABASE_HOST=database node db/controllers/seed_database.js && DATABASE_HOST=database node server/index.js"
   },
@@ -31,6 +32,7 @@
     "enzyme-adapter-react-16": "^1.1.1",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor.git",
     "jest": "^22.4.2",
+    "jest-cli": "^22.4.2",
     "jsdom": "^11.6.2",
     "nodemon": "^1.17.1",
     "sinon": "^4.4.2",
@@ -38,6 +40,7 @@
     "webpack": "^3.11.0"
   },
   "dependencies": {
+    "Faker": "^0.7.2",
     "axios": "^0.18.0",
     "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",
@@ -49,7 +52,8 @@
     "morgan": "^1.9.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "underscore": "^1.8.3"
+    "underscore": "^1.8.3",
+    "valid-json": "^1.0.3"
   },
   "jest": {}
 }
