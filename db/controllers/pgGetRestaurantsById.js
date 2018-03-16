@@ -15,8 +15,8 @@ const connect = async () => {
 }
 
 const applySchema = (place, openHours) => {
-  console.log('place:', place);
-  console.log('openhours', openHours);
+  //console.log('place:', place);
+  //console.log('openhours', openHours);
   return {
     result: {
       _id: place.period_id,
