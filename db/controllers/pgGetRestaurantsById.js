@@ -1,6 +1,7 @@
 const pg = require('pg');
 const promise = require('bluebird');
 const _ = require('lodash');
+const instruments = require('../../metrics/pgGetRestaurantsById_stats.js').bind(this);
 
 process.env.PGHOST = process.env.DATABASE_HOST || 'localhost';
 process.env.PGPORT = process.env.DATABASE_PORT || '5432';
@@ -60,8 +61,10 @@ const find = (queryObj) => {
 
 const findOne = (id) => {
   return db.query('SELECT * FROM places WHERE place_id = $1', [id])
+  //^Time independently
   .then((place) => {
     return db.query('SELECT * FROM openhours WHERE place_id = $1 ORDER BY openday', [id])
+    //^Time independently
     .then((openhours) => {
       return applySchema(place.rows[0], openhours.rows);
     })
@@ -82,5 +85,7 @@ exports.findOneRestaurant = findOne;
 exports.insert = null;
 exports.remove = null;
 exports.count = null;
+
+instruments();
 
 

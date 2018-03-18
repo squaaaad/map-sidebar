@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 databaseHost = process.env.DATABASE_HOST || '127.0.0.1';
 var db = mongoose.connect('mongodb://' + databaseHost + '/wegot-sidebar');
+const instruments = require('../../metrics/mongooseGetRestaurantsById_stats.js').bind(this);
 
 var restaurantSchema = mongoose.Schema({
   result: {
@@ -69,3 +70,5 @@ exports.count = count;
 //misc objects for testing and database seeding
 exports.Restaurant = Restaurant;
 exports.mongoose = mongoose;
+
+instruments();
