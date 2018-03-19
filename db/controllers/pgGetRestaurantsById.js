@@ -59,7 +59,7 @@ const find = (queryObj) => {
 
 }
 
-const findOne = (id) => {
+const findOne = (id) => { //refactor to promise.all, and potentially break apply schema into two methods
   return db.query('SELECT * FROM places WHERE place_id = $1', [id])
   //^Time independently
   .then((place) => {
