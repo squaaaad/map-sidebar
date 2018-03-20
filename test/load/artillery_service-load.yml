@@ -1,0 +1,52 @@
+#run with: artillery run -e <environment> artillery_service-load.yml
+
+config:
+  # target: "127.0.0.1:3003"
+  http:
+    pool: 10
+  environments:
+    local:
+      target: "http://127.0.0.1:3003"
+      phases:
+        - duration: 30
+          arrivalRate: 10
+        - duration: 30
+          arrivalRate: 30
+        - duration: 30
+          arrivalRate: 50
+        - duration: 30
+          arrivalRate: 80
+        - duration: 30
+          arrivalRate: 100
+        - duration: 10
+          arrivalRate: 150
+        - duration: 10
+          arrivalRate: 200
+    # aws:
+    #   target: "blah"
+    #   phases:
+    #     - duration: 60
+    #       arrivalRate: 20
+  processor: "./generateRandomIDs.js"
+
+  defaults:
+    # headers:
+    #   x-my-service-auth: '987401838271002188298567'
+  plugins:
+    statsd:
+      host: "localhost"
+      port: 8125
+      prefix: "artillery"
+
+scenarios:
+  - name: 'pageload'
+    flow:
+      - loop:
+        - function: 'generateUserIDs'
+        # - get:
+        #     url: "/bundle.js"
+        - think: 1
+        - get: 
+            url: "/api/restaurants/{{ id }}/sidebar" #/api/restaurants/76578/sidebar
+        count: 4
+  

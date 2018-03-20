@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
-var instruments = require('../../metrics/stats.js').bind(this);
+var instruments = require('../../metrics/restaurants_api_stats.js').bind(this);
 //var getRestaurantById = require('../../db/controllers/getRestaurantById.js'); //not sure if this works with .findOneRestuarant ??
-var getRestaurantById = require('../../db/controllers/pgGetRestaurantsById.js');
-//var getRestaurantById = require('../../db/controllers/mongoGetRestaurantsById.js');
+// var getRestaurantById = require('../../db/controllers/pgGetRestaurantsById.js');
+var getRestaurantById = require('../../db/controllers/mongoGetRestaurantsById.js');
 
 reqHandlers = {
   sidebarHandler: function(req, res) {
