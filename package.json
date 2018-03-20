@@ -9,14 +9,17 @@
     "test": "jest",
     "react-dev": "webpack --watch",
     "start-dev": "nodemon server/index.js",
-    "start": "node server/index.js",
-    "docker-start": "DATABASE_HOST=database node db/controllers/seed_database.js && DATABASE_HOST=database node server/index.js"
+    "start-mongo": "mongod --fork --syslog; DBMS=mongodb node server/index.js",
+    "start-postgres": "pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start; DBMS=postgresql node server/index.js",
+    "docker-start": "DATABASE_HOST=database node db/controllers/seed_database.js && DATABASE_HOST=database node server/index.js",
+    "stop-postgres": "pg_ctl -D /usr/local/var/postgres stop -s -m fast",
+    "stop-mongo": "init_scripts/shutdown.sh mongo"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bamboo-connection/map-side-bar.git"
   },
-  "author": "Paolo Z. Roxas",
+  "author": "Sean Lang-Brown",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/bamboo-connection/map-side-bar/issues"
@@ -52,6 +55,7 @@
     "mongodb": "^3.0.4",
     "mongoose": "^5.0.6",
     "morgan": "^1.9.0",
+    "node-statsd-instrument": "0.0.1",
     "pg": "^7.4.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",

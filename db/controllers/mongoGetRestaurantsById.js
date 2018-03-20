@@ -1,6 +1,7 @@
 const mongo = require('mongodb').MongoClient;
 const promise = require('bluebird');
 const _ = require('lodash');
+const instruments = require('../../metrics/mongoGetRestaurantsById_stats.js').bind(this);
 
 const dbIP = process.env.DATABASE_HOST || 'localhost';
 const dbPort = process.env.DATABASE_PORT || '27017';
@@ -34,7 +35,7 @@ const count = () => {};
 
 //on import:
 connect()
-.then(() => ('connected to database', dbName))
+.then(() => (console.log('connected to database', dbName)))
 .catch((err) => (console.log(err)));
 
 
@@ -43,5 +44,7 @@ exports.findOneRestaurant = findOne;
 exports.insert = null;
 exports.remove = null;
 exports.count = null;
+
+instruments();
 
 

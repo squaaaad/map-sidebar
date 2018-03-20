@@ -25,8 +25,6 @@ CREATE TABLE places(
   lat DOUBLE PRECISION NOT NULL,
   lon DOUBLE PRECISION NOT NULL
 
-
-
 );
 
 -- DROP TABLE openhours;
@@ -50,7 +48,7 @@ ALTER TABLE places ADD PRIMARY KEY(place_id);
 ALTER TABLE places ADD UNIQUE (place_id);
 
 --add keys to openhours
-ALter TABLE openhours ADD period_id SERIAL PRIMARY KEY;
+ALTER TABLE openhours ADD period_id SERIAL PRIMARY KEY;
 ALTER TABLE openhours ADD FOREIGN KEY(place_id) REFERENCES places (place_id);
 
 --create index to optimize primary key lookup and join

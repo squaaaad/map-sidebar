@@ -10,7 +10,7 @@ var restaurantsApiRouter = require('./routers/restaurants_api.js');
 
 app.use(cors());
 app.use(bodyParser.json());
-app.use(morgan('tiny'));
+//app.use(morgan('tiny'));
 
 app.options((req, res) => {
   res.send('OK');
@@ -22,7 +22,7 @@ app.get('/bundle.js', (req, res) => {
 
 app.use('/restaurants', restaurantsRouter);
 
-app.use('/api/restaurants', restaurantsApiRouter);
+app.use('/api/restaurants/:id/sidebar', restaurantsApiRouter.reqHandlers.sidebarHandler);
 
 
 
