@@ -45,7 +45,7 @@ scenarios:
         - function: 'generateUserIDs'
         # - get:
         #     url: "/bundle.js"
-        - think: 1
+        # - think: 1
         - get: 
             url: "/api/restaurants/{{ id }}/sidebar" #/api/restaurants/76578/sidebar
         count: 4
