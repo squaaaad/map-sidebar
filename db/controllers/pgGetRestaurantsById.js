@@ -60,17 +60,13 @@ const find = (queryObj) => {
 }
 
 const findOne = (id) => { //refactor to promise.all, and potentially break apply schema into two methods
-  return db.query('SELECT * FROM places WHERE place_id = $1', [id])
+  return promise.all([db.query('SELECT * FROM places WHERE place_id = $1', [id]), db.query('SELECT * FROM openhours WHERE place_id = $1 ORDER BY openday', [id])])
   //^Time independently
-  .then((place) => {
-    return db.query('SELECT * FROM openhours WHERE place_id = $1 ORDER BY openday', [id])
-    //^Time independently
-    .then((openhours) => {
-      return applySchema(place.rows[0], openhours.rows);
-    })
-    .catch((error) => {
-      console.log('pg query error:', error);
-    })
+  .then(([place, openhours]) => {
+    return applySchema(place.rows[0], openhours.rows);
+  })
+  .catch((error) => {
+    console.log('pg query error:', error);
   });
 }
 
