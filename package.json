@@ -8,6 +8,7 @@
     "seed-database": "db/controllers/seed_database.js",
     "test": "jest",
     "react-dev": "webpack --watch",
+    "build" : "webpack",
     "start-dev": "nodemon server/index.js",
     "start-mongo": "mongod --fork --syslog; DBMS=mongodb node server/index.js",
     "start": "DBMS=mongodb DATABASE_HOST=54.241.52.144 PORT=80 node server/index.js",
