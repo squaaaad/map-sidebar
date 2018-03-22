@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/bamboo-connection/map-side-bar#readme",
   "engines": {
-    "node": ">=9.0"
+    "node": ">=8.3.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
