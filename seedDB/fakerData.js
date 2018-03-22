@@ -94,6 +94,7 @@ const fakerRestaurant = (i, indexStart) => {
   let lon = Faker.Address.longitude();
   let hours = randomWeeklyHours();
   let result = {result: {
+    _id: index.toString(),
     place_id: index.toString(), //numbers 1-10mil
     name: Faker.Company.companyName(),
     formatted_address: Faker.Address.streetAddress(), //number and street
