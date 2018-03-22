@@ -16,7 +16,7 @@ app.options((req, res) => {
   res.send('OK');
 });
 
-app.get('/api/restaurants/:id/bundle.js', (req, res) => {
+app.get('/restaurants/:id/bundle.js', (req, res) => {
   res.sendFile(path.resolve('client/dist/bundle.js'));
 });
 
