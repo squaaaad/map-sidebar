@@ -94,7 +94,7 @@ const fakerRestaurant = (i, indexStart) => {
   let lat = Faker.Address.latitude();
   let lon = Faker.Address.longitude();
   let hours = randomWeeklyHours();
-  let result = {result: {
+  let result = {
     _id: id,
     place_id: id, //numbers 1-10mil
     name: Faker.Company.companyName(),
@@ -113,7 +113,7 @@ const fakerRestaurant = (i, indexStart) => {
         lng: Number(lon)
       }
     }
-  }};
+  };
   return result;
 };
 
