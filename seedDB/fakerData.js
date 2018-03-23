@@ -90,12 +90,13 @@ const fakerRestaurant = (i, indexStart) => {
   
   let index = indexStart + i;
   //console.log('i', index.toString());
+  let id = (index + 1).toString();
   let lat = Faker.Address.latitude();
   let lon = Faker.Address.longitude();
   let hours = randomWeeklyHours();
   let result = {result: {
-    _id: index.toString(),
-    place_id: index.toString(), //numbers 1-10mil
+    _id: id,
+    place_id: id, //numbers 1-10mil
     name: Faker.Company.companyName(),
     formatted_address: Faker.Address.streetAddress(), //number and street
     international_phone_number: intlFormatPhoneNum(Faker.PhoneNumber.phoneNumber()),  //+1 9 digit
