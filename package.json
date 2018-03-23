@@ -8,7 +8,7 @@
     "seed-database": "db/controllers/seed_database.js",
     "test": "jest",
     "react-dev": "webpack --watch",
-    "build" : "webpack",
+    "build": "webpack",
     "start-dev": "nodemon server/index.js",
     "start-mongo": "mongod --fork --syslog; DBMS=mongodb node server/index.js",
     "start": "DBMS=mongodb DATABASE_HOST=54.241.52.144 PORT=80 node server/index.js",
@@ -64,6 +64,7 @@
     "pg": "^7.4.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "redis": "^2.8.0",
     "underscore": "^1.8.3",
     "valid-json": "^1.0.3"
   },
