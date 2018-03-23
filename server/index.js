@@ -7,6 +7,9 @@ var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var restaurantsRouter = require('./routers/restaurants.js');
 var restaurantsApiRouter = require('./routers/restaurants_api.js');
+var redis = require('../cache/redis.js');
+
+var cache = redis.makeResponseCache((req, res) => (req.params.id));
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -22,7 +25,8 @@ app.get('/restaurants/:id/bundle.js', (req, res) => {
 
 app.use('/restaurants', restaurantsRouter);
 
-app.use('/api/restaurants/:id/sidebar', restaurantsApiRouter.reqHandlers.sidebarHandler);
+//app.use('/api/restaurants/:id/sidebar', redisHandler);
+app.use('/api/restaurants/:id/sidebar', cache.check, restaurantsApiRouter.reqHandlers.sidebarHandler, cache.add);
 
 
 

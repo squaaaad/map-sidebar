@@ -14,10 +14,12 @@ if (process.env.DBMS === 'mongodb') {
 
 
 reqHandlers = {
-  sidebarHandler: function(req, res) {
+  sidebarHandler: function(req, res, next) {
     var restaurantId = req.params.id;
     getRestaurantById.findOneRestaurant(restaurantId).then((result) => {
       res.send(result);
+      res.locals.addToCache = result;
+      next();
     })
     .catch((err) => {
       console.log(err);
