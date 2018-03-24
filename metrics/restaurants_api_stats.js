@@ -3,16 +3,18 @@ statsd_server = process.env.STATSD_SERVER || '127.0.0.1';
 statsd_port = process.env.STATSD_PORT || 8125;
 
 const instruments = function() {
-  statsd_client = new instrument.StatsD(statsd_server, statsd_port);
-  statsd_instrument = new instrument.StatsDInstrumentation(statsd_client);
+  if (!process.env.NOSTATS) {
+    statsd_client = new instrument.StatsD(statsd_server, statsd_port);
+    statsd_instrument = new instrument.StatsDInstrumentation(statsd_client);
 
-  //timing
-  //statsd_instrument.measure(restaurants_api, 'router', 'server.dbrequest.time')
-  statsd_instrument.measure(reqHandlers, 'sidebarHandler', 'server.dbrequesthandler.time')
+    //timing
+    //statsd_instrument.measure(restaurants_api, 'router', 'server.dbrequest.time')
+    statsd_instrument.measure(reqHandlers, 'sidebarHandler', 'server.dbrequesthandler.time')
 
-  //counting
-  //statsd_instrument.count(restaurants_api, 'router', 'server.dbrequest.count')
-  statsd_instrument.count(reqHandlers, 'sidebarHandler', 'server.dbrequesthandler.count')
+    //counting
+    //statsd_instrument.count(restaurants_api, 'router', 'server.dbrequest.count')
+    statsd_instrument.count(reqHandlers, 'sidebarHandler', 'server.dbrequesthandler.count')
+  }
 }
 
 module.exports = instruments;
