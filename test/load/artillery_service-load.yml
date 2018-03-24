@@ -39,6 +39,15 @@ config:
           arrivalRate: 800
         - duration: 10
           arrivalRate: 1000
+    awsHighLoad:
+      target: "http://54.153.79.174"
+      phases:
+        - duration: 30
+          arrivalRate: 600
+        - duration: 10
+          arrivalRate: 800
+        - duration: 10
+          arrivalRate: 1000
         - duration: 10
           arrivalRate: 1200
     awsHotshot600:
