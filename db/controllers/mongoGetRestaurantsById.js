@@ -25,7 +25,7 @@ const find = (queryObj) => {
 
 const findOne = (id) => {
   //console.log(restaurants);
-  return restaurants.find({'_id': id}).limit(1).toArray().then((results) => results[0]);
+  return restaurants.find({'result.place_id': id}).limit(1).toArray().then((results) => results[0]);
 }
 
 const insert = () => {};
