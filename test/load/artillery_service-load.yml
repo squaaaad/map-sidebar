@@ -22,11 +22,25 @@ config:
           arrivalRate: 150
         - duration: 10
           arrivalRate: 200
-    # aws:
-    #   target: "blah"
-    #   phases:
-    #     - duration: 60
-    #       arrivalRate: 20
+    aws:
+      target: "http://54.153.79.174"
+      phases:
+        - duration: 30
+          arrivalRate: 10
+        - duration: 30
+          arrivalRate: 30
+        - duration: 30
+          arrivalRate: 50
+        - duration: 30
+          arrivalRate: 80
+        - duration: 30
+          arrivalRate: 100
+        - duration: 10
+          arrivalRate: 150
+        - duration: 10
+          arrivalRate: 200
+        - duration: 10
+          arrivalRate: 250
   processor: "./generateRandomIDs.js"
 
   defaults:
