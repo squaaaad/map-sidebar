@@ -5,7 +5,7 @@ statsd_port = process.env.STATSD_PORT || 8125;
 const instruments = function() {
   console.log('process.env.NOSTATS', process.env.NOSTATS);
   if (!process.env.NOSTATS) {
-    console.log('instrument running')
+    console.log('instrument logging to', statsd_port);
     statsd_client = new instrument.StatsD(statsd_server, statsd_port);
     statsd_instrument = new instrument.StatsDInstrumentation(statsd_client);
 
