@@ -26,21 +26,41 @@ config:
       target: "http://54.153.79.174"
       phases:
         - duration: 30
-          arrivalRate: 10
+          arrivalRate: 40
         - duration: 30
-          arrivalRate: 30
+          arrivalRate: 120
         - duration: 30
-          arrivalRate: 50
-        - duration: 30
-          arrivalRate: 80
-        - duration: 30
-          arrivalRate: 100
-        - duration: 10
-          arrivalRate: 150
-        - duration: 10
           arrivalRate: 200
+        - duration: 30
+          arrivalRate: 400
+        - duration: 30
+          arrivalRate: 600
         - duration: 10
-          arrivalRate: 250
+          arrivalRate: 800
+        - duration: 10
+          arrivalRate: 1000
+        - duration: 10
+          arrivalRate: 1200
+    awsHotshot600:
+      target: "http://54.153.79.174"
+      phases:
+        - duration: 60
+          arrivalRate: 600
+    awsHotshot800:
+      target: "http://54.153.79.174"
+      phases:
+        - duration: 60
+          arrivalRate: 800
+    awsHotshot1k:
+      target: "http://54.153.79.174"
+      phases:
+        - duration: 60
+          arrivalRate: 1000
+    awsHotshot1K2:
+      target: "http://54.153.79.174"
+      phases:
+        - duration: 60
+          arrivalRate: 1200
   processor: "./generateRandomIDs.js"
 
   defaults:
@@ -55,12 +75,12 @@ config:
 scenarios:
   - name: 'pageload'
     flow:
-      - loop:
-        - function: 'generateUserIDs'
-        # - get:
-        #     url: "/bundle.js"
-        # - think: 1
-        - get: 
-            url: "/api/restaurants/{{ id }}/sidebar" #/api/restaurants/76578/sidebar
-        count: 4
+      # - loop:
+      - function: 'generateUserIDs'
+      # - get:
+      #     url: "/bundle.js"
+      # - think: 1
+      - get: 
+          url: "/api/restaurants/{{ id }}/sidebar" #/api/restaurants/76578/sidebar
+        # count: 4
   
