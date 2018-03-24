@@ -11,7 +11,7 @@
     "build" : "webpack",
     "start-dev": "nodemon server/index.js",
     "start-mongo": "mongod --fork --syslog; DBMS=mongodb node server/index.js",
-    "start": "DBMS=mongodb DATABASE_HOST=13.57.250.241 STATSD_SERVER=172.31.13.209 PORT=80 node server/index.js",
+    "start": "DBMS=mongodb DATABASE_HOST=13.57.250.241 STATSD_SERVER=52.9.156.148 PORT=80 node server/index.js",
     "start-postgres": "pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start; DBMS=postgresql node server/index.js",
     "docker-start": "DATABASE_HOST=database node db/controllers/seed_database.js && DATABASE_HOST=database node server/index.js",
     "stop-postgres": "pg_ctl -D /usr/local/var/postgres stop -s -m fast",
