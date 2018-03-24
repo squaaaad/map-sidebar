@@ -77,7 +77,7 @@ config:
     #   x-my-service-auth: '987401838271002188298567'
   plugins:
     statsd:
-      host: "localhost"
+      host: "http://13.57.36.9"
       port: 8125
       prefix: "artillery"
 
