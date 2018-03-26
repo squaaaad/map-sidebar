@@ -23,7 +23,7 @@ config:
         - duration: 10
           arrivalRate: 200
     aws:
-      target: "http://54.153.79.174"
+      target: "http://54.153.4.74"
       phases:
         - duration: 30
           arrivalRate: 40
@@ -40,7 +40,7 @@ config:
         - duration: 10
           arrivalRate: 1000
     awsHighLoad:
-      target: "http://54.153.79.174"
+      target: "http://54.153.4.74"
       phases:
         - duration: 30
           arrivalRate: 600
