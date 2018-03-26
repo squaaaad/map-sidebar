@@ -6,15 +6,38 @@ const CACHE_TIME = process.env.CACHE_TIME || 6;
 
 const client = redis.createClient(REDIS_PORT);
 
-//client.setex('key', CACHE_TIME, 'value');
+let requestHandler = null;
 
-let getKey = null;
-const makeResponseCache =  (reqCallback) => {
-  getKey = reqCallback;
+const cachedRequestHander(reqHander) => {
+  requestHandler = reqHander;
+  return this._cachedHandler;
 }
 
-const retrieve = (req, res, next) => {
-  const key = getKey(req, res);
+const cacheResponse (res, key) => {
+  const methods = ["send", "end", "json"];
+
+  const interceptRes = function (method) {
+    let originalMethod = res[method];
+    return function () {
+      originalMethod.apply(this, arguments);
+      let data = arguments[0];
+      if (method === "json"){
+        data = JSON.stringify(data);
+      }
+      client.set(key, data);
+    }
+  }
+
+  for (var i = 0; i < methods.length; i++) {
+    res[methods[i]] = interceptRes(methods[i]);
+  }
+
+  return res;
+}
+
+
+const cachedHandler = (req, res, next) => {
+  const key = req.url;
   client.get(key, (err, data) => {
     if (err) {
       console.log (err);
@@ -23,21 +46,12 @@ const retrieve = (req, res, next) => {
       console.log('retrieved cached data');
       res.send(JSON.parse(data));
     } else {
-      next();
+      requestHandler(req, cacheResponse(res, key), next);
     }
   });
 }
 
-const insert = (req, res, next) => {
-  const key = getKey(req, res);
-  //console.log('res after send', res);
-  if (res.locals.addToCache) {
-    client.set(key, JSON.stringify(res.locals.addToCache));
-  }
-}
-
-module.exports.makeResponseCache = makeResponseCache;
-module.exports.retrieve = retrieve;
-module.exports.insert = insert;
+module.exports._cachedHandler = cachedHandler;
+module.exports.cachedRequestHander = cachedRequestHander;
 
 instruments();

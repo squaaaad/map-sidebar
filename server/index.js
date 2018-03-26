@@ -9,7 +9,6 @@ var restaurantsRouter = require('./routers/restaurants.js');
 var restaurantsApiRouter = require('./routers/restaurants_api.js');
 var redis = require('../cache/redis.js');
 
-redis.makeResponseCache((req, res) => (req.params.id));
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -26,7 +25,7 @@ app.get('/restaurants/:id/bundle.js', (req, res) => {
 app.use('/restaurants', restaurantsRouter);
 
 //app.use('/api/restaurants/:id/sidebar', redisHandler);
-app.use('/api/restaurants/:id/sidebar', redis.retrieve, restaurantsApiRouter.reqHandlers.sidebarHandler, redis.insert);
+app.use('/api/restaurants/:id/sidebar', redis.cachedRequestHandler(restaurantsApiRouter.reqHandlers.sidebarHandler));
 
 
 
