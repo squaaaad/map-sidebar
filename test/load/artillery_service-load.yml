@@ -6,7 +6,7 @@ config:
     pool: 10
   environments:
     local:
-      target: "http://127.0.0.1:3003"
+      target: "http://54.153.4.74:3003"
       phases:
         - duration: 30
           arrivalRate: 10
@@ -23,7 +23,7 @@ config:
         - duration: 10
           arrivalRate: 200
     aws:
-      target: "http://54.153.79.174"
+      target: "http://54.153.4.74"
       phases:
         - duration: 30
           arrivalRate: 40
@@ -39,37 +39,37 @@ config:
           arrivalRate: 800
         - duration: 10
           arrivalRate: 1000
-    awsHighLoad:
-      target: "http://54.153.79.174"
-      phases:
-        - duration: 30
-          arrivalRate: 600
-        - duration: 10
-          arrivalRate: 800
-        - duration: 10
-          arrivalRate: 1000
-        - duration: 10
-          arrivalRate: 1200
-    awsHotshot600:
-      target: "http://54.153.79.174"
-      phases:
-        - duration: 60
-          arrivalRate: 600
-    awsHotshot800:
-      target: "http://54.153.79.174"
-      phases:
-        - duration: 60
-          arrivalRate: 800
-    awsHotshot1k:
-      target: "http://54.153.79.174"
-      phases:
-        - duration: 60
-          arrivalRate: 1000
-    awsHotshot1K2:
-      target: "http://54.153.79.174"
-      phases:
-        - duration: 60
-          arrivalRate: 1200
+    # awsHighLoad:
+    #   target: "http://54.153.79.174"
+    #   phases:
+    #     - duration: 30
+    #       arrivalRate: 600
+    #     - duration: 10
+    #       arrivalRate: 800
+    #     - duration: 10
+    #       arrivalRate: 1000
+    #     - duration: 10
+    #       arrivalRate: 1200
+    # awsHotshot600:
+    #   target: "http://54.153.79.174"
+    #   phases:
+    #     - duration: 60
+    #       arrivalRate: 600
+    # awsHotshot800:
+    #   target: "http://54.153.79.174"
+    #   phases:
+    #     - duration: 60
+    #       arrivalRate: 800
+    # awsHotshot1k:
+    #   target: "http://54.153.79.174"
+    #   phases:
+    #     - duration: 60
+    #       arrivalRate: 1000
+    # awsHotshot1K2:
+    #   target: "http://54.153.79.174"
+    #   phases:
+    #     - duration: 60
+    #       arrivalRate: 1200
   processor: "./generateRandomIDs.js"
 
   defaults:
@@ -77,7 +77,8 @@ config:
     #   x-my-service-auth: '987401838271002188298567'
   plugins:
     statsd:
-      host: "http://13.57.36.9"
+      host: "localhost"
+      # host: "http://52.9.156.148"
       port: 8125
       prefix: "artillery"
 
@@ -85,11 +86,11 @@ scenarios:
   - name: 'pageload'
     flow:
       # - loop:
-      - function: 'generateUserIDs'
+      # - function: 'generateUserIDs'
       # - get:
       #     url: "/bundle.js"
       # - think: 1
       - get: 
-          url: "/api/restaurants/{{ id }}/sidebar" #/api/restaurants/76578/sidebar
+          url: "/ping" #/api/restaurants/76578/sidebar
         # count: 4
   
