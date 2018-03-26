@@ -23,6 +23,8 @@ app.get('/restaurants/:id/bundle.js', (req, res) => {
   res.sendFile(path.resolve('client/dist/bundle.js'));
 });
 
+app.get('/ping', (req, res) => (res.send('pong')));
+
 app.use('/restaurants', restaurantsRouter);
 
 //app.use('/api/restaurants/:id/sidebar', redisHandler);
