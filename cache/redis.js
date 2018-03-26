@@ -9,8 +9,7 @@ const client = redis.createClient(REDIS_PORT);
 let requestHandler = null;
 
 const cachedRequestHander(reqHander) => {
-  requestHandler = reqHander;
-  return this._cachedHandler;
+  return this._cachedHandler.bind(this, reqHander);
 }
 
 const cacheResponse (res, key) => {
@@ -36,7 +35,7 @@ const cacheResponse (res, key) => {
 }
 
 
-const cachedHandler = (req, res, next) => {
+const cachedHandler = (requestHandler, req, res, next) => {
   const key = req.url;
   client.get(key, (err, data) => {
     if (err) {

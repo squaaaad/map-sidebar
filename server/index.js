@@ -9,7 +9,6 @@ var restaurantsRouter = require('./routers/restaurants.js');
 var restaurantsApiRouter = require('./routers/restaurants_api.js');
 var redis = require('../cache/redis.js');
 
-
 app.use(cors());
 app.use(bodyParser.json());
 //app.use(morgan('tiny'));
