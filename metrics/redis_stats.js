@@ -1,11 +1,13 @@
 instrument = require('node-statsd-instrument');
+statsd_client = require('./statsd_client.js');
+
 
 const instruments = function() {
-  statsd_client = new instrument.StatsD('127.0.0.1', 8125);
-  statsd_instrument = new instrument.StatsDInstrumentation(statsd_client);
+  if(statsd_client) {
+    statsd_instrument = new instrument.StatsDInstrumentation(statsd_client);
 
-  statsd_instrument.measure(this, '_cachedHandler', 'redis.retrieve_time');
-  statsd_instrument.count(this, '_cachedHandler', 'redis.retrieve_Count');
- }
+    statsd_instrument.measure(this, '_cachedHandler', 'redis.retrieve_time');
+    statsd_instrument.count(this, '_cachedHandler', 'redis.retrieve_Count');
+  }
 
 module.exports = instruments;
