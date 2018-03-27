@@ -5,6 +5,9 @@ const REDIS_PORT = process.env.REDIS_PORT || '6379';
 const CACHE_TIME = process.env.CACHE_TIME || 6;
 
 const client = redis.createClient(REDIS_PORT);
+client.on("error", function (err) {
+    console.log("Redis Error " + err);
+});
 
 //client.setex('key', CACHE_TIME, 'value');
 
@@ -20,7 +23,7 @@ const retrieve = (req, res, next) => {
       console.log (err);
     }
     if (data != null) {
-      console.log('retrieved cached data');
+      //console.log('retrieved cached data');
       res.send(JSON.parse(data));
     } else {
       next();
