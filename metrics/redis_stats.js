@@ -3,7 +3,7 @@ statsd_client = require('./statsd_client.js');
 
 
 const instruments = function() {
-  if(statsd_client) {
+  if(statsd_client !== null) {
     console.log('redis logging stats');
     statsd_instrument = new instrument.StatsDInstrumentation(statsd_client);
 
