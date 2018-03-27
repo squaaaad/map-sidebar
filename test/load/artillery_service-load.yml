@@ -22,11 +22,54 @@ config:
           arrivalRate: 150
         - duration: 10
           arrivalRate: 200
-    # aws:
-    #   target: "blah"
-    #   phases:
-    #     - duration: 60
-    #       arrivalRate: 20
+    aws:
+      target: "http://54.153.79.174"
+      phases:
+        - duration: 30
+          arrivalRate: 40
+        - duration: 30
+          arrivalRate: 120
+        - duration: 30
+          arrivalRate: 200
+        - duration: 30
+          arrivalRate: 400
+        - duration: 30
+          arrivalRate: 600
+        - duration: 10
+          arrivalRate: 800
+        - duration: 10
+          arrivalRate: 1000
+    awsHighLoad:
+      target: "http://54.153.79.174"
+      phases:
+        - duration: 30
+          arrivalRate: 600
+        - duration: 10
+          arrivalRate: 800
+        - duration: 10
+          arrivalRate: 1000
+        - duration: 10
+          arrivalRate: 1200
+    awsHotshot600:
+      target: "http://54.153.79.174"
+      phases:
+        - duration: 60
+          arrivalRate: 600
+    awsHotshot800:
+      target: "http://54.153.79.174"
+      phases:
+        - duration: 60
+          arrivalRate: 800
+    awsHotshot1k:
+      target: "http://54.153.79.174"
+      phases:
+        - duration: 60
+          arrivalRate: 1000
+    awsHotshot1K2:
+      target: "http://54.153.79.174"
+      phases:
+        - duration: 60
+          arrivalRate: 1200
   processor: "./generateRandomIDs.js"
 
   defaults:
@@ -34,19 +77,19 @@ config:
     #   x-my-service-auth: '987401838271002188298567'
   plugins:
     statsd:
-      host: "localhost"
+      host: "http://13.57.36.9"
       port: 8125
       prefix: "artillery"
 
 scenarios:
   - name: 'pageload'
     flow:
-      - loop:
-        - function: 'generateUserIDs'
-        # - get:
-        #     url: "/bundle.js"
-        # - think: 1
-        - get: 
-            url: "/api/restaurants/{{ id }}/sidebar" #/api/restaurants/76578/sidebar
-        count: 4
+      # - loop:
+      - function: 'generateUserIDs'
+      # - get:
+      #     url: "/bundle.js"
+      # - think: 1
+      - get: 
+          url: "/api/restaurants/{{ id }}/sidebar" #/api/restaurants/76578/sidebar
+        # count: 4
   
