@@ -5,6 +5,9 @@ const REDIS_PORT = process.env.REDIS_PORT || '6379';
 const CACHE_TIME = process.env.CACHE_TIME || 6;
 
 const client = redis.createClient(REDIS_PORT);
+client.on("error", function (err) {
+    console.log("Error " + err);
+});
 
 let requestHandler = null;
 
