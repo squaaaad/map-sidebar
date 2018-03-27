@@ -11,11 +11,11 @@ client.on("error", function (err) {
 
 let requestHandler = null;
 
-const cachedRequestHander(reqHander) => {
+const cachedRequestHandler = (reqHander) => {
   return this._cachedHandler.bind(this, reqHander);
 }
 
-const cacheResponse (res, key) => {
+const cacheResponse = (res, key) => {
   const methods = ["send", "end", "json"];
 
   const interceptRes = function (method) {
@@ -26,7 +26,8 @@ const cacheResponse (res, key) => {
       if (method === "json"){
         data = JSON.stringify(data);
       }
-      client.set(key, data);
+      //console.log('setting', key, data, arguments);
+      client.set(key, JSON.stringify(data));
     }
   }
 
@@ -39,7 +40,7 @@ const cacheResponse (res, key) => {
 
 
 const cachedHandler = (requestHandler, req, res, next) => {
-  const key = req.url;
+  const key = req.originalUrl;
   client.get(key, (err, data) => {
     if (err) {
       console.log (err);
@@ -54,6 +55,6 @@ const cachedHandler = (requestHandler, req, res, next) => {
 }
 
 module.exports._cachedHandler = cachedHandler;
-module.exports.cachedRequestHander = cachedRequestHander;
+module.exports.cachedRequestHandler = cachedRequestHandler;
 
 instruments();
