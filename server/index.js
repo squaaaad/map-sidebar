@@ -10,7 +10,8 @@ var restaurantsApiRouter = require('./routers/restaurants_api.js');
 var redis = require('../cache/redis.js');
 var fs = require('fs');
 
-//const indexHTML = fs.readFileSync();
+const bundle = fs.readFileSync(path.resolve('client/dist/bundle.js'));
+const indexHTML = fs.readFileSync(path.resolve('client/dist/index.html'));
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -20,16 +21,16 @@ app.options((req, res) => {
   res.send('OK');
 });
 
-app.get('/restaurants/:id/bundle.js', redis.cachedRequestHandler((req, res) => {
-  res.sendFile(path.resolve('client/dist/bundle.js'));
-}));
+app.get('/restaurants/:id/bundle.js', (req, res) => {
+  res.send(bundle);
+});
 
 
 app.get('/loaderio-2063f06794c9e1e4203112fd58e83795.txt', (req, res) => (res.sendFile(path.resolve('loaderIO/loaderio-2063f06794c9e1e4203112fd58e83795.txt'))));
 
 app.get('/ping', (req, res) => (res.send('pong')));
 
-app.use('/restaurants', redis.cachedRequestHandler(restaurantsRouter));
+app.use('/restaurants/id/', (req, res) => (res.send(indexHTML)));
 
 //app.use('/api/restaurants/:id/sidebar', redisHandler);
 app.use('/api/restaurants/:id/sidebar', redis.cachedRequestHandler(restaurantsApiRouter.reqHandlers.sidebarHandler));

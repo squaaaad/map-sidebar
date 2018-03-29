@@ -26,7 +26,7 @@ const cacheResponse = (res, key) => {
       let data = arguments[0];
       if (method === "json") {
         data = JSON.stringify(data);
-      } else if (method = "sendFile") {
+      } else if (method === "sendFile") {
         data = fs.readFileSync(data);
       }
       //console.log('setting', key, data, arguments);
