@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var restaurantsRouter = require('./routers/restaurants.js');
 var restaurantsApiRouter = require('./routers/restaurants_api.js');
 var redis = require('../cache/redis.js');
+var fs = require('fs');
 
 const indexHTML = fs.readFileSync(path.resolve('client/dist/bundle.js'));
 
