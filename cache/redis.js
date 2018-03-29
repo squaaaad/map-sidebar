@@ -9,7 +9,7 @@ client.on("error", function (err) {
     console.log("Redis Error " + err);
 });
 
-let requestHandler = null;
+//let requestHandler = null;
 
 const cachedRequestHandler = (reqHander) => {
   return this._cachedHandler.bind(this, reqHander);
