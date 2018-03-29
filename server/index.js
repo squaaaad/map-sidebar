@@ -29,7 +29,7 @@ app.get('/loaderio-2063f06794c9e1e4203112fd58e83795.txt', (req, res) => (res.sen
 
 app.get('/ping', (req, res) => (res.send('pong')));
 
-app.use('/restaurants', restaurantsRouter);
+app.use('/restaurants', redis.cachedRequestHandler(restaurantsRouter));
 
 //app.use('/api/restaurants/:id/sidebar', redisHandler);
 app.use('/api/restaurants/:id/sidebar', redis.cachedRequestHandler(restaurantsApiRouter.reqHandlers.sidebarHandler));

@@ -1,5 +1,6 @@
 const redis = require('redis');
 const instruments = require('../metrics/redis_stats.js').bind(this);
+const fs = require("fs");
 
 const REDIS_PORT = process.env.REDIS_PORT || '6379';
 const CACHE_TIME = process.env.CACHE_TIME || 6;
@@ -16,15 +17,17 @@ const cachedRequestHandler = (reqHander) => {
 }
 
 const cacheResponse = (res, key) => {
-  const methods = ["send", "end", "json"];
+  const methods = ["send", "end", "json", "sendFile"];
 
   const interceptRes = function (method) {
     let originalMethod = res[method];
     return function () {
       originalMethod.apply(this, arguments);
       let data = arguments[0];
-      if (method === "json"){
+      if (method === "json") {
         data = JSON.stringify(data);
+      } else if (method = "sendFile") {
+        data = fs.readFileSync(data);
       }
       //console.log('setting', key, data, arguments);
       client.set(key, JSON.stringify(data));
