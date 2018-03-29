@@ -9,6 +9,8 @@ var restaurantsRouter = require('./routers/restaurants.js');
 var restaurantsApiRouter = require('./routers/restaurants_api.js');
 var redis = require('../cache/redis.js');
 
+const indexHTML = fs.readFileSync(path.resolve('client/dist/bundle.js'));
+
 app.use(cors());
 app.use(bodyParser.json());
 //app.use(morgan('tiny'));
@@ -18,7 +20,7 @@ app.options((req, res) => {
 });
 
 app.get('/restaurants/:id/bundle.js', (req, res) => {
-  res.sendFile(path.resolve('client/dist/bundle.js'));
+  res.send(indexHTML);
 });
 
 app.get('/loaderio-2063f06794c9e1e4203112fd58e83795.txt', (req, res) => (res.sendFile(path.resolve('loaderIO/loaderio-2063f06794c9e1e4203112fd58e83795.txt'))));
