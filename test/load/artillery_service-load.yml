@@ -39,7 +39,7 @@ config:
           arrivalRate: 800
         - duration: 30
           arrivalRate: 1000
-	- duration: 30
+        - duration: 30
           arrivalRate: 1250
         - duration: 30
           arrivalRate: 1500
