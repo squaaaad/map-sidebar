@@ -23,7 +23,7 @@ config:
         - duration: 10
           arrivalRate: 200
     aws:
-      target: "http://54.153.4.74"
+      target: "http://http://map-sidebar-load-balancer-378682979.us-west-1.elb.amazonaws.com/"
       phases:
         - duration: 600
           arrivalRate: 100
@@ -45,8 +45,8 @@ config:
           arrivalRate: 1500
         - duration: 30
           arrivalRate: 2000
-          duration: 30
-        - arrivalRate: 3000
+        - duration: 30
+          arrivalRate: 3000
 
     awsHighLoad:
       target: "http://54.153.4.74"
