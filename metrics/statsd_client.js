@@ -7,7 +7,7 @@ let statsd_client = null;
 if(!process.env.NOSTATS) {
   statsd_client = new instrument.StatsD(statsd_server, statsd_port);
   statsd_client.loggerID = id;
-  console.log('instrument logging to', statsd_server, ":", statsd_port, "loggingID: " statsd_client.loggerID);
+  console.log('instrument logging to', statsd_server, ":", statsd_port, "loggingID:", statsd_client.loggerID);
 }
 
 module.exports = statsd_client;
