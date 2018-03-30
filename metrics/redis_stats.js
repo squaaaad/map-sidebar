@@ -7,8 +7,8 @@ const instruments = function() {
     console.log('redis logging stats');
     statsd_instrument = new instrument.StatsDInstrumentation(statsd_client);
 
-    statsd_instrument.measure(this, '_cachedHandler', 'redis.retrieve_time');
-    statsd_instrument.count(this, '_cachedHandler', 'redis.retrieve_Count');
+    statsd_instrument.measure(this, '_cachedHandler', 'redis_'+ statsd_client.loggerID +'.retrieve_time');
+    statsd_instrument.count(this, '_cachedHandler', 'redis_'+ statsd_client.loggerID +'.retrieve_Count');
   }
 }
 
