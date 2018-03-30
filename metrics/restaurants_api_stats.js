@@ -1,6 +1,7 @@
 instrument = require('node-statsd-instrument');
 statsd_server = process.env.STATSD_SERVER || '127.0.0.1';
 statsd_port = process.env.STATSD_PORT || 8125;
+const id = process.env.LOGGER_ID.toString() || '1';
 
 const instruments = function() {
   console.log('process.env.NOSTATS', process.env.NOSTATS);
@@ -11,11 +12,11 @@ const instruments = function() {
 
     //timing
     //statsd_instrument.measure(restaurants_api, 'router', 'server.dbrequest.time')
-    statsd_instrument.measure(reqHandlers, 'sidebarHandler', 'server_'+ statsd_client.loggerID +'.dbrequesthandler.time')
+    statsd_instrument.measure(reqHandlers, 'sidebarHandler', 'server_'+ id +'.dbrequesthandler.time')
 
     //counting
     //statsd_instrument.count(restaurants_api, 'router', 'server.dbrequest.count')
-    statsd_instrument.count(reqHandlers, 'sidebarHandler', 'server_'+ statsd_client.loggerID +'.dbrequesthandler.count')
+    statsd_instrument.count(reqHandlers, 'sidebarHandler', 'server_'+ id +'.dbrequesthandler.count')
   }
 }
 
