@@ -23,7 +23,7 @@ config:
         - duration: 10
           arrivalRate: 200
     aws:
-      target: "map-sidebar-five-1446973408.us-west-1.elb.amazonaws.com"
+      target: "http://map-sidebar-five-1446973408.us-west-1.elb.amazonaws.com"
       phases:
         - duration: 600
           arrivalRate: 100
