@@ -1,0 +1,15 @@
+instrument = require('node-statsd-instrument');
+statsd_client = require('./statsd_client.js');
+
+
+const instruments = function() {
+  if(statsd_client !== null) {
+    console.log('redis logging stats');
+    statsd_instrument = new instrument.StatsDInstrumentation(statsd_client);
+
+    statsd_instrument.measure(this, '_cachedHandler', 'redis_'+ statsd_client.loggerID +'.retrieve_time');
+    statsd_instrument.count(this, '_cachedHandler', 'redis_'+ statsd_client.loggerID +'.retrieve_Count');
+  }
+}
+
+module.exports = instruments;

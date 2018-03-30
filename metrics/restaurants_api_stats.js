@@ -11,11 +11,11 @@ const instruments = function() {
 
     //timing
     //statsd_instrument.measure(restaurants_api, 'router', 'server.dbrequest.time')
-    statsd_instrument.measure(reqHandlers, 'sidebarHandler', 'server.dbrequesthandler.time')
+    statsd_instrument.measure(reqHandlers, 'sidebarHandler', 'server_'+ statsd_client.loggerID +'.dbrequesthandler.time')
 
     //counting
     //statsd_instrument.count(restaurants_api, 'router', 'server.dbrequest.count')
-    statsd_instrument.count(reqHandlers, 'sidebarHandler', 'server.dbrequesthandler.count')
+    statsd_instrument.count(reqHandlers, 'sidebarHandler', 'server_'+ statsd_client.loggerID +'.dbrequesthandler.count')
   }
 }
 

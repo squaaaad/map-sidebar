@@ -9,11 +9,11 @@ const instruments = function() {
 
     //timing
     //statsd_instrument.measure(restaurants_api, 'router', 'server.dbrequest.time')
-    statsd_instrument.measure(this, 'findOneRestaurant', 'server.db_mongoose_contoller_time')
+    statsd_instrument.measure(this, 'findOneRestaurant', 'server_'+ statsd_client.loggerID +'.db_mongoose_contoller_time')
 
     //counting
     //statsd_instrument.count(restaurants_api, 'router', 'server.dbrequest.count')
-    statsd_instrument.count(this, 'findOneRestaurant', 'server.db_mongoose_controller_count')
+    statsd_instrument.count(this, 'findOneRestaurant', 'server_'+ statsd_client.loggerID +'.db_mongoose_controller_count')
   }
 }
 
